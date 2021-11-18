@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-from Transportation.lib.local_settings import db
+from lib.local_settings import name_db, password_db
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -78,8 +78,8 @@ WSGI_APPLICATION = 'Transportation.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': db['name_db'],
-        'PASSWORD': db['Password_db'],
+        'NAME': name_db,
+        'PASSWORD': password_db,
         'USER': 'postgres',
         'PORT': 5432
     }
