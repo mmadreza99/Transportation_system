@@ -12,3 +12,4 @@ class BaseUser(AbstractUser):
     class Meta:
         verbose_name = _('BaseUser')
         verbose_name_plural = _('BaseUsers')
+
