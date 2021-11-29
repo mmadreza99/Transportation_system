@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 class User(AbstractUser):
@@ -10,7 +11,7 @@ class User(AbstractUser):
         AUTHOR = 'AUTHOR', 'Author'
 
     type = models.CharField(_('Type'), max_length=50, choices=Types.choices, default=Types.DRIVER)
-    phone_number = models.CharField(_('phone_number'), max_length=11, blank=True)
+    phone_number = PhoneNumberField(_('phone_number'), blank=False, unique=True)
     Social_Security = models.CharField(_('Social_Security'), max_length=10, blank=True)
     avatar = models.ImageField(upload_to='avatar', blank=True)
     is_active = models.BooleanField(
