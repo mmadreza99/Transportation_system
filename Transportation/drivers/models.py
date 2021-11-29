@@ -59,7 +59,7 @@ class DriverMore(User):
     truck = models.OneToOneField(Truck, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.name}, {self.phone_number}'
+        return f'{self.user}, {self.phone_number.as_e164 }'
 
     class Meta:
         verbose_name = _('DriverUser')
