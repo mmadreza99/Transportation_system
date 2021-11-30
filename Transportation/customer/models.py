@@ -28,7 +28,7 @@ class Consignment(models.Model):
     number = models.CharField(_('number'), max_length=20, blank=True)
     origin_of_sending = models.CharField(_('origin of sending'), max_length=50)
     recipient_destination = models.CharField(_('recipient destination'), max_length=50)
-    sender = models.ForeignKey(CustomerMore, related_name='consignment', on_delete=models.SET_NULL)
+    sender = models.ForeignKey(CustomerMore, related_name='consignment', on_delete=models.SET_NULL, null=True)
     recipient_name = models.CharField(_('recipient name'), max_length=50)
     recipient_number = PhoneNumberField(_('phone_number'), blank=False)
 
