@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'drivers.apps.DriversConfig',
     'account.apps.AccountConfig',
+    'customer.apps.CustomerConfig',
+    'Blog.apps.BlogConfig',
+    'waybill.apps.WaybillConfig',
 ]
 
 MIDDLEWARE = [
@@ -134,7 +137,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 # locale configurations
-LOCALE_PATHS = (os.path.join(BASE_DIR, 'locale'),)
+# LOCALE_PATHS = (os.path.join(BASE_DIR, 'locale'),)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
