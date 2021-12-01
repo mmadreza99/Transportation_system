@@ -7,6 +7,8 @@ __pycache__/
 *.so
 
 .idea
+#media file atachment
+media/
 
 # Distribution / packaging
 .Python
