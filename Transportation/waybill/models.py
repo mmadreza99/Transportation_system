@@ -12,6 +12,6 @@ class Waybill(models.Model):
     more = models.JSONField(_('more'))
 
     def __str__(self):
-        return f'consignment: {self.consignment.__str__()}' \
-               f',driver :{self.driver.__str__()},' \
-               f' sender: {self.sender.__str__()}'
+        return f'''consignment: {self.consignment.__str__()}| \
+                driver :{self.driver.__str__()}| \
+                sender: {self.sender.__str__()}'''
