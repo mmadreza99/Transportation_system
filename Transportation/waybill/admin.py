@@ -1,3 +1,9 @@
 from django.contrib import admin
+from .models import Waybill
 
-# Register your models here.
+
+class WaybillAdmin(admin.ModelAdmin):
+    list_display = ('driver', 'sender', 'consignment')
+
+
+admin.site.register(Waybill, WaybillAdmin)
