@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Author, Post, Comment
+from .models import AuthorMore, Post, Comment
 
 
 class PostAdmin(admin.ModelAdmin):
@@ -12,18 +12,16 @@ class PostAdmin(admin.ModelAdmin):
 
 
 class AuthorAdmin(admin.ModelAdmin):
-    def username(self):
-        return self.__str__()
-
-    list_display = (username, 'nickname')
+    list_display = ('user', 'nickname')
+    search_fields = ['user', 'nickname']
 
 
 class CommentAdmin(admin.ModelAdmin):
     list_display = ('user', 'post', 'body', 'active', 'created_on')
-    list_filter = ("user",)
+    list_filter = ("active",)
     search_fields = ['active', 'create_on']
 
 
 admin.site.register(Post, PostAdmin)
-admin.site.register(Author, AuthorAdmin)
+admin.site.register(AuthorMore, AuthorAdmin)
 admin.site.register(Comment, CommentAdmin)
