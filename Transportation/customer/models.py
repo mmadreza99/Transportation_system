@@ -3,16 +3,18 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth import get_user_model
 from phonenumber_field.modelfields import PhoneNumberField
 
-User = get_user_model()
-
 
 class CustomerMore(models.Model):
-    user = models.OneToOneField(User, related_name='C_user', on_delete=models.CASCADE)
+    user = models.OneToOneField(get_user_model(), related_name='C_user', on_delete=models.CASCADE)
     address = models.TextField(_('address'), max_length=250)
     Postal_code = models.IntegerField(_('Postal code'), blank=True)
 
     def __str__(self):
-        return self.user
+        return self.user.username
+
+    class Meta:
+        verbose_name = _('CustomerUser')
+        verbose_name_plural = _('CustomersUser')
 
 
 class Consignment(models.Model):
@@ -32,6 +34,9 @@ class Consignment(models.Model):
     recipient_name = models.CharField(_('recipient name'), max_length=50)
     recipient_number = PhoneNumberField(_('phone_number'), blank=False)
 
+    def __str__(self):
+        return f'{self.sender} =>> {self.recipient_name}'
+
     class Meta:
-        verbose_name = _('CustomerUser')
-        verbose_name_plural = _('CustomersUser')
+        verbose_name = _('Consignment')
+        verbose_name_plural = _('Consignments')
