@@ -54,7 +54,6 @@ class DriverMore(models.Model):
     address = models.TextField(_('address'), max_length=150, blank=True)
     kart_hoshmand = models.OneToOneField(KartHoshmand, on_delete=models.CASCADE)
     truck = models.OneToOneField(Truck, on_delete=models.CASCADE)
-    # TODO ADD PHONE NUMBER
 
     def __str__(self):
         return f'{self.user} phone number: {self.user.phone_number}'
