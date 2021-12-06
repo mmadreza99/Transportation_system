@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 User = get_user_model()
 
 
-class Author(models.Model):
+class AuthorMore(models.Model):
     user = models.OneToOneField(User, related_name='A_user', on_delete=models.CASCADE)
     nickname = models.CharField(_('nickname'), max_length=50, blank=True)
 
@@ -27,7 +27,7 @@ class Post(models.Model):
     title = models.CharField(_('title'), max_length=200)
     slug = models.SlugField(max_length=200, unique=True)
     description = models.TextField(_('description'))
-    author = models.ForeignKey(Author, related_name='post', on_delete=models.SET_NULL, null=True)
+    author = models.ForeignKey(AuthorMore, related_name='post', on_delete=models.SET_NULL, null=True)
     attachment = models.FileField(_('attachment'), upload_to='attachment')
     status = models.SmallIntegerField(choices=Status.choices, default=0)
     created_on = models.DateTimeField(auto_now_add=True)
