@@ -1,3 +1,4 @@
+from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
@@ -25,7 +26,7 @@ class User(AbstractUser):
     )
 
 
-class DriverManager(models.Manager):
+class DriverManager(BaseUserManager):
     def get_queryset(self, *args, **kwargs):
         return super().get_queryset(*args, **kwargs).filter(type=User.Types.DRIVER)
 
@@ -36,7 +37,7 @@ class DriverUser(User):
 
     @property
     def more(self):
-        return self.DriverMore
+        return self.D_user
 
     def save(self, *args, **kwargs):
         if not self.pk:
@@ -47,7 +48,7 @@ class DriverUser(User):
         proxy = True
 
 
-class CustomerManager(models.Manager):
+class CustomerManager(BaseUserManager):
     def get_queryset(self, *args, **kwargs):
         return super().get_queryset(*args, **kwargs).filter(type=User.Types.CUSTOMER)
 
@@ -58,7 +59,7 @@ class CustomerUser(User):
 
     @property
     def more(self):
-        return self.customermore
+        return self.C_user
 
     def save(self, *args, **kwargs):
         if not self.pk:
@@ -69,7 +70,7 @@ class CustomerUser(User):
         proxy = True
 
 
-class AuthorManager(models.Manager):
+class AuthorManager(BaseUserManager):
     def get_queryset(self, *args, **kwargs):
         return super().get_queryset(*args, **kwargs).filter(type=User.Types.AUTHOR)
 
@@ -80,11 +81,12 @@ class AuthorUser(User):
 
     @property
     def more(self):
-        return self.authormore
+        return self.A_user
 
     def save(self, *args, **kwargs):
         if not self.pk:
             self.type = User.Types.AUTHOR
+        return super().save(*args, **kwargs)
 
     class Meta:
         proxy = True
