@@ -1,4 +1,4 @@
-{% extends 'account/base_account.html' %}
+{% extends 'Blog/base_account.html' %}
 
 {% block title %}Sign In{% endblock title %}
 
@@ -33,16 +33,23 @@
 								</div>
 			      		</div>
 						<form action="#" class="signin-form" method="post">
+							{% if messages %}
+							<ul class="messages">
+   								 {% for message in messages %}
+   								 <li class="{{ message.tags }}">{{ message }}</li>
+  								  {% endfor %}
+							</ul>
+							{% endif %}
 							{% csrf_token %}
 			      			<div class="form-group mb-3">
 								{{ form.username.errors}}
 			      				<label class="label" id="{{ form.username.id_for_label }} " for="username">Username</label>
-			      				<input type="text" class="form-control" placeholder="Username" maxlength="150" name="{{ form.username.html_name }}">
+			      				<input type="text" class="form-control" placeholder="Username" maxlength="150" name="{{ form.username.html_name }}"  {% if form.username.value != None %} value="{{ form.username.value }}" {% endif %}">
 			      			</div>
 		            		<div class="form-group mb-3">
 								{{ form.password.errors}}
 		            			<label class="label" id="{{ form.password.id_for_label }}" for="password">Password</label>
-		            		  	<input type="password" class="form-control" placeholder="Password" name="{{ form.password.html_name }}">
+		            		  	<input type="password" class="form-control" placeholder="Password" name="{{ form.password.html_name }}" {% if form.password.value != None %} value="{{ form.password.value }}" {% endif %}>
 		            		</div>
 		            		<div class="form-group">
 		            			<button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>

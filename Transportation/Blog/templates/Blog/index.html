@@ -26,9 +26,19 @@
                     <p class="text-light">We Love Django As much as you do..! &nbsp
                     </p>
                 </div>
+                </div>
+                <div class=" col-md-8 col-md-10 mx-auto">
+                {% if messages %}
+					<ul class="messages">
+   					 {% for message in messages %}
+   						 <li class="{{ message.tags }}">{{ message }}</li>
+  					  {% endfor %}
+					</ul>
+                {% endif %}
+                </div>
             </div>
         </div>
-    </div>
+
 </header>
 <div class="container">
     <div class="row">
@@ -45,7 +55,7 @@
             </div>
             {% endfor %}
         </div>
-        {% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
+        {% block sidebar %}  {% endblock sidebar %}
     </div>
 </div>
 {%endblock%}

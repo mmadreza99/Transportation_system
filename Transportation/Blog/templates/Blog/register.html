@@ -1,4 +1,4 @@
-{% extends 'account/base_account.html' %}
+{% extends 'Blog/base_account.html' %}
 
 {% block title %}Sign Up{% endblock title %}
 
@@ -33,31 +33,38 @@
 								</div>
 			      	</div>
 					<form action="#" class="signin-form" method="post">
+						{% if messages %}
+							<ul class="messages">
+								{% for message in messages %}
+								<li class="{{ message.tags }}">{{ message }}</li>
+								{% endfor %}
+							</ul>
+						{% endif %}
 						{% csrf_token %}
 			      		<div class="form-group mb-3">
 							{{ form.username.errors}}
 			      			<label class="label" id="{{ form.username.id_for_label }} " for="username">Username</label>
-			      			<input type="text" class="form-control" placeholder="Username" maxlength="150" name="{{ form.username.html_name }}" value="{{ form.username.value }}"/>
+			      			<input type="text" class="form-control" placeholder="Username" maxlength="150" name="{{ form.username.html_name }}" {% if form.username.value != None %} value="{{ form.username.value }}" {% endif %}/>
 			      		</div>
 		            	<div class="form-group mb-3">
 						{{ form.password1.errors}}
 						<label class="label" id="{{ form.password1.id_for_label }}" for="password1">Password</label>
-		              	<input type="password" class="form-control" placeholder="Password" name="{{ form.password1.html_name }}" value="{{ form.password1.value }}"/>
+		              	<input type="password" class="form-control" placeholder="Password" name="{{ form.password1.html_name }}" {% if form.password1.value != None %} value="{{ form.password1.value }}" {% endif %}/>
 		            	</div>
 						<div class="form-group mb-3">
 						{{ form.password2.errors}}
 						<label class="label" id="{{ form.password2.id_for_label }}" for="password2">Repeat Password</label>
-		              	<input type="password" class="form-control" placeholder="Repeat your password" name="{{ form.password2.html_name }}" value="{{ form.password2.value }}"/>
+		              	<input type="password" class="form-control" placeholder="Repeat your password" name="{{ form.password2.html_name }}" {% if form.password2.value != None %} value="{{ form.password2.value }}" {% endif %}/>
 		            	</div>
 						<div class="form-group mb-3">
 						{{ form.email.errors}}
 						<label class="label" id="{{ form.email.id_for_label }}" for="email">Email</label>
-		              	<input type="text" class="form-control" placeholder="email" name="{{ form.email.html_name }}" value="{{ form.email.value }}"/>
+		              	<input type="text" class="form-control" placeholder="email" name="{{ form.email.html_name }}" {% if form.email.value != None %} value="{{ form.email.value }}"{% endif %}/>
 		            	</div>
 						<div class="form-group mb-3">
 						{{ form.phone_number.errors}}
 						<label class="label" id="{{ form.phone_number.id_for_label }}" for="phone_number">Phone </label>
-		              	<input type="text" class="form-control" placeholder="+98 912 832 45 65" name="{{ form.phone_number.html_name }}" value="{{ form.phone_number.value }}" />
+		              	<input type="text" class="form-control" placeholder="+98 912 832 45 65" name="{{ form.phone_number.html_name }}" {% if form.phone_number.value != None %} value="{{ form.phone_number.value }}" {% endif %}/>
 		            	</div>
 		            	<div class="form-group">
 		            		<button type="submit" class="form-control btn btn-primary submit px-3" value="register">Sign Up</button>
