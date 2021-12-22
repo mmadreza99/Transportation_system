@@ -1,20 +1,19 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-
-User = get_user_model()
+from account.models import AuthorUser
 
 
 class AuthorMore(models.Model):
-    user = models.OneToOneField(User, related_name='A_user', on_delete=models.CASCADE)
+    user = models.OneToOneField(AuthorUser, related_name='A_user', on_delete=models.CASCADE)
     nickname = models.CharField(_('nickname'), max_length=50, blank=True)
 
     def __str__(self):
         return f'{self.user}'
 
     class Meta:
-        verbose_name = _('AuthorUser')
-        verbose_name_plural = _('AuthorsUser')
+        verbose_name = _('AuthorMore')
+        verbose_name_plural = _('AuthorsMores')
 
 
 class Post(models.Model):
@@ -27,7 +26,7 @@ class Post(models.Model):
     title = models.CharField(_('title'), max_length=200)
     slug = models.SlugField(max_length=200, unique=True)
     description = models.TextField(_('description'))
-    author = models.ForeignKey(AuthorMore, related_name='post', on_delete=models.SET_NULL, null=True)
+    author = models.ForeignKey(AuthorUser, related_name='post', on_delete=models.SET_NULL, null=True)
     attachment = models.FileField(_('attachment'), upload_to='attachment')
     status = models.SmallIntegerField(choices=Status.choices, default=0)
     created_on = models.DateTimeField(auto_now_add=True)
@@ -43,7 +42,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
-    user = models.OneToOneField(User, related_name='comment', on_delete=models.CASCADE)
+    user = models.ForeignKey(get_user_model(), related_name='comment', on_delete=models.CASCADE)
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=False)
