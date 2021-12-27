@@ -44,7 +44,7 @@
 			      			<div class="form-group mb-3">
 								{{ form.username.errors}}
 			      				<label class="label" id="{{ form.username.id_for_label }} " for="username">Username</label>
-			      				<input type="text" class="form-control" placeholder="Username" maxlength="150" name="{{ form.username.html_name }}"  {% if form.username.value != None %} value="{{ form.username.value }}" {% endif %}">
+			      				<input type="text" class="form-control" placeholder="Username" maxlength="150" name="{{ form.username.html_name }}"  {% if form.username.value != None %} value="{{ form.username.value }}" {% endif %} />
 			      			</div>
 		            		<div class="form-group mb-3">
 								{{ form.password.errors}}
