@@ -1,0 +1,61 @@
+{% extends 'customer/base_login.html' %}
+{% load static %}
+{% block title %}Customer{% endblock title %}
+{% block body %}
+<style>
+.button {
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.button1 {
+  background-color: white;
+  color: black;
+  border: 2px solid #4CAF50;
+}
+
+.button1:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.button2 {
+  background-color: white;
+  color: black;
+  border: 2px solid #008CBA;
+}
+
+.button2:hover {
+  background-color: #008CBA;
+  color: white;
+}
+
+.button1 {background-color: #4CbF50;} /* Green */
+.button2 {background-color: #009CBA;} /* Blue */
+</style>
+
+<div class="main">
+<section class="sign-in">
+    <div class="container">
+        <div class="signin-content">
+            <div class="signin-image">
+                <figure><img src="{% static 'images/signin-image.jpg' %}" alt="sing up image"></figure>
+            </div>
+
+            <div class="signin-form">
+                <h1 class="form-title">Login Or Register</h1>
+                <a class="button button1" href="{% url 'login' %}">Login</a>
+                <a class="button button2" href="{% url 'register' %}">Register</a>
+
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+{% endblock body %}
