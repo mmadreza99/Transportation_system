@@ -9,7 +9,7 @@
         <div class="signin-content">
             <div class="signin-image">
                 <figure><img src="{% static 'images/signin-image.jpg' %}" alt="sing up image"></figure>
-                <a href="{% url 'register' %}" class="signup-image-link">Create an account</a>
+                <a href="{% url 'customer_register' %}" class="signup-image-link">Create an account</a>
             </div>
 
             <div class="signin-form">
@@ -21,9 +21,10 @@
                     {% endfor %}
                 </ul>
                 {% endif %}
-                <form method="POST" class="register-form" id="login-form">
+                <form action="{{form.action}}" method="POST" class="register-form" id="login-form">
                     {% csrf_token %}
                     <div class="form-group">
+                        {{form.errors}}
                         {{ form.username.errors}}
                         <label id="{{ form.username.id_for_label }}" for="username"><i class="zmdi zmdi-account material-icons-name"></i></label>
                         <input type="text" name="{{ form.username.html_name }}" id="{{ form.username.id }}" placeholder="Username" {% if form.username.value != None %} value="{{ form.username.value }}" {% endif %} />

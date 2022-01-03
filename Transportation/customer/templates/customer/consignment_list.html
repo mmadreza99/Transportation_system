@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Customer</title>
+</head>
+<body>
+{% for item in object_list %}
+<p>
+    {{ item.name }}
+    {{ item.weight }}
+    {{ item.package_type }}
+    {{ item.number }}
+    {{ item.sender }}
+    {{ item.origin_of_sending }}
+    {{ item.recipient_name }}
+    {{ item.recipient_destination }}
+    <a href="{% url 'detail_consignment' item.id %}">Check Detail</a>
+</p>
+{% endfor %}
+</body>
+</html>
