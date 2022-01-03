@@ -19,7 +19,7 @@ class NewUserForm(UserCreationForm):
         return user
 
 
-class LoginUserForm(UserCreationForm):
+class LoginUserForm(forms.ModelForm):
 
     class Meta:
         model = AuthorUser
