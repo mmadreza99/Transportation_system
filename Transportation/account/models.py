@@ -1,5 +1,4 @@
-from django.contrib.auth.base_user import BaseUserManager
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, UserManager
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from phonenumber_field.modelfields import PhoneNumberField
@@ -26,7 +25,7 @@ class User(AbstractUser):
     )
 
 
-class DriverManager(BaseUserManager):
+class DriverManager(UserManager):
     def get_queryset(self, *args, **kwargs):
         return super().get_queryset(*args, **kwargs).filter(type=User.Types.DRIVER)
 
@@ -48,7 +47,7 @@ class DriverUser(User):
         proxy = True
 
 
-class CustomerManager(BaseUserManager):
+class CustomerManager(UserManager):
     def get_queryset(self, *args, **kwargs):
         return super().get_queryset(*args, **kwargs).filter(type=User.Types.CUSTOMER)
 
@@ -70,7 +69,7 @@ class CustomerUser(User):
         proxy = True
 
 
-class AuthorManager(BaseUserManager):
+class AuthorManager(UserManager):
     def get_queryset(self, *args, **kwargs):
         return super().get_queryset(*args, **kwargs).filter(type=User.Types.AUTHOR)
 
