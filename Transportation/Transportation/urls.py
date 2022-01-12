@@ -22,5 +22,6 @@ urlpatterns = [
     path('blog/', include('Blog.urls')),
     path('account/', include('account.urls')),
     path('customer/', include('customer.urls')),
+    path('driver/', include('drivers.urls')),
     path('__debug__/', include(debug_toolbar.urls))
 ]
