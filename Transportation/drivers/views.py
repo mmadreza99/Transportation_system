@@ -38,7 +38,7 @@ class RegisterView(FormView):
 
 class LoginView(FormView):
     form_class = LoginUserDriver
-    template_name = 'customer/login.html'
+    template_name = 'drivers/login.html'
     success_url = '/driver/'
 
     def form_valid(self, form):
