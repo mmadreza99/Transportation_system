@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Driver</title>
+</head>
+<body>
+{% if user.is_authenticated %}
+  Hi {{ user.username }}!
+{% endif %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li class="{{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% if user.is_authenticated %}
+    <a href="{% url 'driver_Logout' %}">logout</a>
+{% endif %}
+
+{% if not user.is_authenticated %}
+    <a href="{% url 'driver_login_or_register' %}">login</a>
+{% endif %}
+
+
+</body>
+</html>
