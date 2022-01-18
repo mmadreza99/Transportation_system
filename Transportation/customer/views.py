@@ -110,7 +110,7 @@ class CreateConsignmentView(FormView):
     success_url = '/customer/consignment/'
 
     def form_valid(self, form):
-        form.cleaned_data['user'] = self.request.user
+        form.instance.sender = self.request.user
         messages.info(self.request, f"create Consignment {form.cleaned_data['name']}")
         form.save()
         return super(CreateConsignmentView, self).form_valid(form)

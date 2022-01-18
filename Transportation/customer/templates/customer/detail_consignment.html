@@ -6,15 +6,16 @@
 </head>
 <body>
 
-    {{ consignment }}
-    {{ consignment.name }}
-    {{ consignment.weight }}
-    {{ consignment.package_type }}
-    {{ consignment.number }}
-    {{ consignment.sender }}
-    {{ consignment.origin_of_sending }}
-    {{ consignment.recipient_name }}
-    {{ consignment.recipient_destination }}
+<h2>{{ consignment }}</h2>
+<p>{{ consignment.name }}</p>
+<p>{{ consignment.weight }}</p>
+<p>{{ consignment.package_type }}</p>
+<p>{{ consignment.number }}</p>
+<p>{{ consignment.sender }}</p>
+<p>{{ consignment.origin_of_sending }}</p>
+<p>{{ consignment.recipient_name }}</p>
+<p>{{ consignment.recipient_destination }}</p>
 
+<a href="{% url 'waybill' sender=consignment.sender pk=consignment.pk %}" type="link">get this Consignment</a>
 </body>
 </html>

@@ -58,26 +58,8 @@ class LoginUserCustomer(forms.ModelForm):
 class CreateConsignmentForm(forms.ModelForm):
     class Meta:
         model = Consignment
-        fields = ('name', 'weight', 'package_type', 'number', 'origin_of_sending',
-                  'recipient_destination', 'recipient_name', 'recipient_number')
-
-    def clean(self):
-        return self.cleaned_data
-
-    def save(self, commit=True):
-        username = self.cleaned_data['user']
-        consignment = Consignment.objects.create(
-            sender=CustomerUser.objects.get(username=username),
-            name=self.cleaned_data['name'],
-            weight=self.cleaned_data['weight'],
-            package_type=self.cleaned_data['package_type'],
-            number=self.cleaned_data['number'],
-            origin_of_sending=self.cleaned_data['origin_of_sending'],
-            recipient_destination=self.cleaned_data['recipient_destination'],
-            recipient_name=self.cleaned_data['recipient_name'],
-            recipient_number=self.cleaned_data['recipient_number']
-        )
-        return super().save(consignment)
+        field = '__all__'
+        exclude = ('sender',)
 
 
 class CreateCustomMoreForm(forms.ModelForm):

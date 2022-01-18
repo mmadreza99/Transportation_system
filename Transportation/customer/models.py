@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from django.contrib.auth import get_user_model
 from phonenumber_field.modelfields import PhoneNumberField
 
 from account.models import CustomerUser
@@ -13,7 +12,7 @@ class CustomerMore(models.Model):
     objects = models.Manager()
 
     def __str__(self):
-        return self.user.username
+        return self.user
 
     class Meta:
         verbose_name = _('CustomerMore')

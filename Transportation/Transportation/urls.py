@@ -23,5 +23,6 @@ urlpatterns = [
     path('account/', include('account.urls')),
     path('customer/', include('customer.urls')),
     path('driver/', include('drivers.urls')),
+    path('waybill/', include('waybill.urls')),
     path('__debug__/', include(debug_toolbar.urls))
 ]
