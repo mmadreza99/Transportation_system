@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView
+from django.contrib import messages
 
 from .forms import CreateWaybill
 from .models import Waybill
@@ -23,8 +24,11 @@ class WaybillDetail(DetailView):
     template_name = 'detail_waybill.html'
     context_object_name = 'waybill'
 
-    def get_object(self, queryset=None):
-        return self.request.user
+    def get_queryset(self):
+        if self.request.user.type == 'DRIVER':
+            return Waybill.objects.filter(driver=self.request.user, pk=self.kwargs['pk'])
+        elif self.request.user.type == 'CUSTOMER':
+            return Waybill.objects.filter(sender=self.request.user, pk=self.kwargs['pk'])
 
 
 def create_waybill(request, sender, pk):
@@ -37,11 +41,12 @@ def create_waybill(request, sender, pk):
         form.instance.sender = customer
         form.instance.consignment = consignment
         if form.is_valid():
-            form.save()
-        return render(request, 'show_waybill.html', context={'form': form,
-                                                             'customer': customer,
-                                                             'consignment': consignment})
-    return render(request, 'show_waybill.html', context={'form': form,
-                                                         'customer': customer,
-                                                         'consignment': consignment})
-
+            waybill = form.save()
+            messages.info(request, 'successful create Waybill')
+            return redirect('detail_waybill', pk=waybill.pk)
+        return render(request, 'create_waybill.html', context={'form': form,
+                                                               'customer': customer,
+                                                               'consignment': consignment})
+    return render(request, 'create_waybill.html', context={'form': form,
+                                                           'customer': customer,
+                                                           'consignment': consignment})

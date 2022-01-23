@@ -16,6 +16,6 @@
 <p>{{ consignment.recipient_name }}</p>
 <p>{{ consignment.recipient_destination }}</p>
 
-<a href="{% url 'waybill' sender=consignment.sender pk=consignment.pk %}" type="link">get this Consignment</a>
+<a href="{% url 'create_waybill' sender=consignment.sender pk=consignment.pk %}" type="link">get this Consignment</a>
 </body>
 </html>

@@ -2,9 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Customer</title>
+    <title>Home</title>
 </head>
 <body>
+index site
+
 {% if user.is_authenticated %}
   Hi {{ user.username }}!
 {% endif %}
@@ -17,16 +19,10 @@
 </ul>
 {% endif %}
 
-{% if user.is_authenticated %}
-    <a href="{% url 'customer_Logout' %}">logout</a>
-    <a href="{% url 'create_consignment' %}">Create Consignment</a>
-{% endif %}
-
 {% if not user.is_authenticated %}
-    <a href="{% url 'customer_login_or_register' %}">login</a>
+    <a href="{% url 'home_customer' %}">Customer</a>
+    <a href="{% url 'home_driver' %}">Driver</a>
 {% endif %}
-
-
 
 </body>
 </html>

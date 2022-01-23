@@ -6,7 +6,7 @@
 </head>
 <body>
 {% if user.is_authenticated %}
-  Hi {{ user.username }}!
+  Hi {{ user.username }} !
 {% endif %}
 
 {% if messages %}
@@ -25,6 +25,12 @@
     <a href="{% url 'driver_login_or_register' %}">login</a>
 {% endif %}
 
+{% if not user.more %}
+    <p><a href="{% url 'driver_profile' %}" > Profile </a><p>
+{% endif %}
 
+<p><a href="{% url 'driver_register_more' %}" > Create more detail </a><p>
+
+<p>list of consignment : <a href="{% url 'customer_consignment' %}" >here</a></p>
 </body>
 </html>

@@ -11,10 +11,10 @@ class Waybill(models.Model):
     consignment = models.ForeignKey(
         Consignment, on_delete=models.SET_NULL, related_name='waybill_consignment', null=True
     )
-    created_on = models.DateTimeField(_('create on'), auto_now_add=True)
+    created_on = models.DateTimeField(_('create on'), auto_now_add=True, auto_created=True)
     more = models.JSONField(_('more'), null=True, blank=True)
 
     def __str__(self):
-        return f'''consignment: {self.consignment.__str__()}| \
-                driver :{self.driver.__str__()}| \
-                sender: {self.sender.__str__()}'''
+        return f'''consignment: {self.consignment}| \
+                driver :{self.driver}| \
+                sender: {self.sender}'''
