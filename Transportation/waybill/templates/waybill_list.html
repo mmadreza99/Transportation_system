@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List Waybill</title>
+</head>
+<body>
+
+{% for item in waybill_list %}
+<p>
+<p>{{ item.driver }}</p>
+<p>{{ item.sender }}</p>
+<p>{{ item.consignment }}</p>
+<p>{{ item.more }}</p>
+<p>{{ item.created_on }} </p>
+<a href="{% url 'detail_waybill' item.id %}">Check Detail</a>
+</p>
+{% endfor %}
+</body>
+</html>

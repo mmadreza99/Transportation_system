@@ -19,13 +19,14 @@
 
 {% if user.is_authenticated %}
     <a href="{% url 'customer_Logout' %}">logout</a>
+    <a href="{% url 'create_consignment' %}">Create Consignment</a>
 {% endif %}
 
 {% if not user.is_authenticated %}
     <a href="{% url 'customer_login_or_register' %}">login</a>
 {% endif %}
 
-<a href="{% url 'update_consignment' 0 %}">Create Consignment</a>
+
 
 </body>
 </html>

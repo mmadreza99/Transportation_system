@@ -1,0 +1,59 @@
+/* IMAGE LIGHTBOX SELECTOR */
+
+/* WITH ACTIVITY INDICATION */
+
+#imagelightbox-loading {
+	right: 50%;
+	margin: -1.25em -1.25em 0 0;
+	left: auto;
+}
+
+/* WITH OVERLAY */
+
+		#imagelightbox-overlay {
+	left: 0;
+	right: 0;
+}
+
+/* WITH "CLOSE" BUTTON */
+
+		#imagelightbox-close {
+	text-align: right;
+	left: 2.5em;
+	right: auto;
+}
+
+#imagelightbox-close:before,
+			#imagelightbox-close:after {
+	right: 50%;
+	margin-right: -1px;
+	left: auto;
+	margin-left: auto;
+}
+
+/* WITH CAPTION */
+
+		#imagelightbox-caption {
+	right: 0;
+	left: 0;
+}
+
+/* WITH NAVIGATION */
+
+		#imagelightbox-nav {
+	right: 50%;
+	left: auto;
+}
+
+@media only screen and (max-width: 41.250em) /* 660 */ {
+
+/* WITH NAVIGATION */
+
+		#imagelightbox-nav {
+	right: 50%;
+	left: auto;
+}
+
+}
+
+

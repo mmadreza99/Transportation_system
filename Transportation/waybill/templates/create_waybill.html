@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Waybill</title>
+</head>
+<body>
+    <h3>Driver :</h3>
+    {{request.user}}
+    {{request.user.type}}
+    <h3>consignment</h3>
+    {{consignment}}
+    <h3>customer</h3>
+    {{customer}}
+    {{customer.phone_number}}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Get Waybill">
+    </form>
+
+</body>
+</html>

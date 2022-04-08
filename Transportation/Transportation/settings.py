@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'customer.apps.CustomerConfig',
     'Blog.apps.BlogConfig',
     'waybill.apps.WaybillConfig',
+    'home.apps.HomeConfig',
     'crispy_forms',
     'debug_toolbar',
 ]

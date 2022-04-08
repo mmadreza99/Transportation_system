@@ -10,8 +10,13 @@
         {{form.as_p}}
         <input type="submit" >
     </form>
-    {{truck}}
-    {{certificate}}
-    {{kart}}
+    <p>info truck : {{truck}}</p>
+    <p>info certificate : {{certificate}}</p>
+    <p>info kartHoshmand : {{kart}}</p>
+
+    <p><a href="{% url 'driver_register_certificate' %}">Create Certificate </a><p>
+    <p><a href="{% url 'driver_register_truck' %}">Create Truck </a><p>
+    <p><a href="{% url 'driver_register_kart' %}">Create KartHoshmand </a><p>
+
 </body>
 </html>

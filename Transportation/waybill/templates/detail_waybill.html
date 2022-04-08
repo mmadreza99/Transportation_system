@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail Waybill</title>
+</head>
+<body>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li class="{{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<h1>{{waybill}}</h1>
+<h3>waybill </h3>
+<h3>driver : {{waybill.driver}}</h3>
+<h3>sender : {{waybill.sender}}</h3>
+<h3>create on : {{waybill.created_on}}</h3>
+<h3>consignment name: {{waybill.consignment.name}}</h3>
+<h3>recipient name : {{waybill.consignment.recipient_name}}</h3>
+<h3>more {{waybill.more}}</h3>
+
+</body>
+</html>
