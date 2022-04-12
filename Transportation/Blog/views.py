@@ -11,7 +11,7 @@ from account.models import User
 
 
 def home_page_blog(request):
-    return render(request, template_name='Blog/index_account.html', context={})
+    return render(request, template_name='blog/index_account.html', context={})
 
 
 def register(request):
@@ -24,7 +24,7 @@ def register(request):
             messages.success(request, f"Registration {user.username} successful.")
             return redirect('home')
         messages.error(request, "Unsuccessful registration. Invalid information.")
-    return render(request, template_name="Blog/register.html", context={"form": form})
+    return render(request, template_name="blog/register.html", context={"form": form})
 
 
 def login_page(request):
@@ -43,7 +43,7 @@ def login_page(request):
                 messages.error(request, "Invalid username or password.")
         else:
             messages.error(request, "Invalid username or password.")
-    return render(request, template_name="Blog/login.html", context={"form": form})
+    return render(request, template_name="blog/login.html", context={"form": form})
 
 
 class PostList(generic.ListView):
