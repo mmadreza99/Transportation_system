@@ -88,22 +88,22 @@ WSGI_APPLICATION = 'Transportation.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-   'default': {
-       'ENGINE': 'django.db.backends.postgresql',
-       'NAME': DB['name_db'],
-       'PASSWORD': DB['password_db'],
-       'USER': 'postgres',
-       'PORT': 5432
-   }
-}
-
 # DATABASES = {
 #    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': os.path.join(BASE_DIR, 'sqlite3.db'),
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME': DB['name_db'],
+#        'PASSWORD': DB['password_db'],
+#        'USER': 'postgres',
+#        'PORT': 5432
 #    }
 # }
+
+DATABASES = {
+   'default': {
+       'ENGINE': 'django.db.backends.sqlite3',
+       'NAME': os.path.join(BASE_DIR, 'sqlite3.db'),
+   }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
