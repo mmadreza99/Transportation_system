@@ -181,9 +181,14 @@ class ProfileView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(ProfileView, self).get_context_data(**kwargs)
-        context['truck'] = Truck.objects.filter(user=self.request.user.D_user).first()
-        context['certificate'] = Certificate.objects.filter(user=self.request.user.D_user).first()
-        context['kart'] = KartHoshmand.objects.filter(user=self.request.user.D_user).first()
+        try:
+            driver_user = self.request.user.D_user
+        except:
+            driver_user = None
+        if driver_user:
+            context['truck'] = Truck.objects.filter(user=driver_user).first()
+            context['certificate'] = Certificate.objects.filter(user=driver_user).first()
+            context['kart'] = KartHoshmand.objects.filter(user=driver_user).first()
         return context
 
     def form_valid(self, form):

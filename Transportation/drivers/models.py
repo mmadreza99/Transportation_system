@@ -5,7 +5,7 @@ from account.models import DriverUser
 
 
 class DriverMore(models.Model):
-    user = models.OneToOneField(DriverUser, related_name='D_user', on_delete=models.CASCADE)
+    user = models.OneToOneField(DriverUser, related_name='D_user', on_delete=models.CASCADE, null=True)
     Date_of_birth = models.DateField(_('birth'), null=True)
     place_of_birth = models.CharField(_('place of birth'), max_length=50, blank=True)
     address = models.TextField(_('address'), max_length=150, blank=True)
