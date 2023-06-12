@@ -61,6 +61,9 @@ class RegisterMoreForm(forms.ModelForm):
         model = DriverMore
         fields = '__all__'
         exclude = ['user']
+        widgets = {
+            'Date_of_birth': forms.widgets.DateInput(attrs={'type': 'date'}),
+        }
 
     def save(self, commit=True):
         more = super(RegisterMoreForm, self).save(commit=False)
@@ -76,6 +79,10 @@ class RegisterCertificate(forms.ModelForm):
         model = Certificate
         fields = '__all__'
         exclude = ['user']
+        widgets = {
+            'created_time': forms.widgets.DateInput(attrs={'type': 'date'}),
+            'validity_date': forms.widgets.DateInput(attrs={'type': 'date'})
+        }
 
     def save(self, commit=True):
         certificate = super(RegisterCertificate, self).save(commit=False)
@@ -104,6 +111,10 @@ class RegisterKartHoshmand(forms.ModelForm):
         model = KartHoshmand
         fields = '__all__'
         exclude = ['user']
+        widgets = {
+            'create_time': forms.widgets.DateInput(attrs={'type': 'date'}),
+            'validity_date': forms.widgets.DateInput(attrs={'type': 'date'})
+        }
 
     def save(self, commit=True):
         kart = super(RegisterKartHoshmand, self).save(commit=False)

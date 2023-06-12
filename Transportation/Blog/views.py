@@ -22,7 +22,7 @@ def register(request):
             user = form.save()
             login(request, user)
             messages.success(request, f"Registration {user.username} successful.")
-            return redirect('home')
+            return redirect('blog-home')
         messages.error(request, "Unsuccessful registration. Invalid information.")
     return render(request, template_name="blog/register.html", context={"form": form})
 
@@ -38,7 +38,7 @@ def login_page(request):
             if user is not None:
                 login(request, user)
                 messages.info(request, f"You are now logged in as {username}.")
-                return redirect("home")
+                return redirect("blog-home")
             else:
                 messages.error(request, "Invalid username or password.")
         else:
@@ -65,7 +65,11 @@ def post_detail(request, slug):
             new_comment = comment_form.save(commit=False)
             # Assign the current post to the comment
             new_comment.post = post
-            new_comment.user = User.objects.get(username=request.user)
+            try:
+                new_comment.user = User.objects.get(username=request.user)
+            except User.DoesNotExist:
+                # comment by Anonymous user
+                pass
             # Save the comment to the database
             new_comment.save()
     else:

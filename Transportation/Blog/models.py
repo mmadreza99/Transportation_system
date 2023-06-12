@@ -27,7 +27,7 @@ class Post(models.Model):
     slug = models.SlugField(max_length=200, unique=True)
     description = models.TextField(_('description'))
     author = models.ForeignKey(AuthorUser, related_name='post', on_delete=models.SET_NULL, null=True)
-    attachment = models.FileField(_('attachment'), upload_to='attachment')
+    attachment = models.ImageField(_('attachment'), upload_to='attachment')
     status = models.SmallIntegerField(choices=Status.choices, default=0)
     created_on = models.DateTimeField(auto_now_add=True)
 
@@ -42,7 +42,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
-    user = models.ForeignKey(get_user_model(), related_name='comment', on_delete=models.CASCADE)
+    user = models.ForeignKey(get_user_model(), related_name='comment', on_delete=models.CASCADE, null=True, blank=True)
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=False)

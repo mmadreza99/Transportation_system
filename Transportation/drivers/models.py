@@ -54,11 +54,15 @@ class Truck(models.Model):
         TANK_TRUCK = 'TANK_TRUCK', 'Tank_truck'
         CAR_TRANSPORT = 'CAR_TRANSPORT', 'Car_transport'
         HEAVY = 'HEAVY', 'Heavy'
+
+    def upload_to(self, file_name):
+        return f'{self._meta}/{self.user}/{file_name}'
+
     user = models.OneToOneField(DriverMore, on_delete=models.CASCADE)
     type = models.CharField(_('type'), max_length=15, choices=Types.choices)
     registration_plate = models.CharField(_('registration plate'), max_length=8)
     id_insurance = models.IntegerField(_('id insurance'))
-    image = models.ImageField(_('image'), upload_to='truck')
+    image = models.ImageField(_('image'), upload_to=upload_to)
 
     def __str__(self):
         return f'{self.type}, {self.registration_plate}'

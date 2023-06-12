@@ -151,8 +151,9 @@ USE_TZ = True
 # )
 
 # media related settings
-#MEDIA_URL = '/media/'
-#MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
 #print(MEDIA_ROOT)
 # locale configurations
 # LOCALE_PATHS = (os.path.join(BASE_DIR, 'locale'),)
