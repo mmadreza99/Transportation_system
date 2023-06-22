@@ -24,6 +24,18 @@ class User(AbstractUser):
         ),
     )
 
+    @property
+    def more(self):
+        try:
+            if self.type == 'DRIVER':
+                return self.D_user
+            if self.type == 'CUSTOMER':
+                return self.C_user
+            if self.type == 'AUTHOR':
+                return self.A_user
+        except:
+            return None
+
 
 class DriverManager(UserManager):
     def get_queryset(self, *args, **kwargs):
@@ -33,10 +45,6 @@ class DriverManager(UserManager):
 class DriverUser(User):
     objects = DriverManager()
     base_type = User.Types.DRIVER
-
-    @property
-    def more(self):
-        return self.D_user
 
     def save(self, *args, **kwargs):
         if not self.pk:
@@ -56,10 +64,6 @@ class CustomerUser(User):
     objects = CustomerManager()
     base_type = User.Types.CUSTOMER
 
-    @property
-    def more(self):
-        return self.C_user
-
     def save(self, *args, **kwargs):
         if not self.pk:
             self.type = User.Types.CUSTOMER
@@ -77,10 +81,6 @@ class AuthorManager(UserManager):
 class AuthorUser(User):
     base_type = User.Types.AUTHOR
     objects = AuthorManager()
-
-    @property
-    def more(self):
-        return self.A_user
 
     def save(self, *args, **kwargs):
         if not self.pk:

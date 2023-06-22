@@ -1,0 +1,8 @@
+{
+  "disks": [
+    {
+      "name": "my-disk1",
+      "mountTo": "media"
+    }
+  ]
+}

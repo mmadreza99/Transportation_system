@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView
 from django.contrib import messages
+from django.http import HttpResponse
 
 from .forms import CreateWaybill
 from .models import Waybill
@@ -34,6 +35,8 @@ class WaybillDetail(DetailView):
 def create_waybill(request, sender, pk):
     customer = get_object_or_404(CustomerUser, username=sender)
     consignment = get_object_or_404(Consignment, id=pk)
+    if request.user.type != 'DRIVER':
+        return HttpResponse('just user Driver can be take waybill')
     form = CreateWaybill()
     if request.method == 'POST':
         form = CreateWaybill(request.POST)

@@ -103,6 +103,11 @@ class ConsignmentDetailView(DetailView):
     model = Consignment
     template_name = 'customer/detail_consignment.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(ConsignmentDetailView, self).get_context_data(**kwargs)
+        context['type_user'] = self.request.user.type
+        return context
+
 
 class CreateConsignmentView(FormView):
     form_class = CreateConsignmentForm

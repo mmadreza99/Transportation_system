@@ -83,7 +83,7 @@ class RegisterUpdateMoreView(UpdateView):
     template_name = 'drivers/register_more.html'
 
     def get_object(self, queryset=None):
-        return self.request.user.D_user
+        return self.request.user.more
 
     def form_valid(self, form):
         print('touch', form.cleaned_data['place_of_birth'])
@@ -98,7 +98,7 @@ class RegisterCertificateView(FormView):
     template_name = 'drivers/register_certificate.html'
 
     def form_valid(self, form):
-        form.cleaned_data['user'] = self.request.user.D_user
+        form.cleaned_data['user'] = self.request.user.more
         form.save()
         return super(RegisterCertificateView, self).form_valid(form)
 
@@ -112,7 +112,7 @@ class RegisterUpdateCertificateView(UpdateView):
     template_name = 'drivers/register_certificate.html'
 
     def get_object(self, queryset=None):
-        return self.request.user.D_user.certificate
+        return self.request.user.more.certificate
 
     def get_success_url(self):
         return reverse_lazy('home_driver')
@@ -137,7 +137,7 @@ class RegisterUpdateTruckView(UpdateView):
     template_name = 'drivers/register_truck.html'
 
     def get_object(self, queryset=None):
-        return self.request.user.D_user.truck
+        return self.request.user.more.truck
 
     def get_success_url(self):
         return reverse_lazy('home_driver')
@@ -148,7 +148,7 @@ class RegisterKartView(FormView):
     template_name = 'drivers/register_kart.html'
 
     def form_valid(self, form):
-        form.cleaned_data['user'] = self.request.user.D_user
+        form.cleaned_data['user'] = self.request.user.more
         form.save()
         return super(RegisterKartView, self).form_valid(form)
 
@@ -162,7 +162,7 @@ class RegisterUpdateKartView(UpdateView):
     template_name = 'drivers/register_kart.html'
 
     def get_object(self, queryset=None):
-        return self.request.user.D_user.kartHoshmand
+        return self.request.user.more.kartHoshmand
 
     def get_success_url(self):
         return reverse_lazy('home_driver')
@@ -182,7 +182,7 @@ class ProfileView(UpdateView):
     def get_context_data(self, **kwargs):
         context = super(ProfileView, self).get_context_data(**kwargs)
         try:
-            driver_user = self.request.user.D_user
+            driver_user = self.request.user.more
         except:
             driver_user = None
         if driver_user:
