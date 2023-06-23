@@ -105,7 +105,10 @@ class ConsignmentDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(ConsignmentDetailView, self).get_context_data(**kwargs)
-        context['type_user'] = self.request.user.type
+        try:
+            context['type_user'] = self.request.user.type
+        except:
+            context['type_user'] = 'Anonymous'
         return context
 
 

@@ -35,6 +35,7 @@ class Consignment(models.Model):
     sender = models.ForeignKey(CustomerUser, related_name='consignment', on_delete=models.SET_NULL, null=True)
     recipient_name = models.CharField(_('recipient name'), max_length=50)
     recipient_number = PhoneNumberField(_('recipient phone number'), blank=False)
+    photo = models.ImageField(upload_to='Consignment', blank=True, null=True)
 
     objects = models.Manager()
 
@@ -44,3 +45,9 @@ class Consignment(models.Model):
     class Meta:
         verbose_name = _('Consignment')
         verbose_name_plural = _('Consignments')
+
+    def get_url_photo(self):
+        try:
+            return self.photo.url
+        except:
+            return "/static/images/default/consignment.jpg"

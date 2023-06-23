@@ -20,16 +20,8 @@ urlpatterns = [
              views.CreateCustomerMore.as_view(),
              login_url="/customer/login_or_register/"
          ), name='customer_more'),
-    path('consignment/',
-         login_required(
-             views.ConsignmentListView.as_view(),
-             login_url="/customer/login_or_register/"
-         ), name='customer_consignment'),
-    path('consignment/<int:pk>/',
-         login_required(
-             views.ConsignmentDetailView.as_view(),
-             login_url="/customer/login_or_register/"
-         ), name='detail_consignment'),
+    path('consignment/', views.ConsignmentListView.as_view(), name='customer_consignment'),
+    path('consignment/<int:pk>/', views.ConsignmentDetailView.as_view(), name='detail_consignment'),
     path('consignment/create_consignment/',
          login_required(
              views.CreateConsignmentView.as_view(),
