@@ -23,7 +23,7 @@ class Certificate(models.Model):
         P1 = 'P1', 'p1'
         P2 = 'P2', 'p2'
         P3 = 'P3', 'p3'
-    user = models.OneToOneField(DriverMore, on_delete=models.CASCADE)
+    user = models.OneToOneField(DriverMore, on_delete=models.CASCADE, related_name='certificate')
     id = models.CharField(_('id'), max_length=20, primary_key=True)
     created_time = models.DateField(_('create time'))
     validity_date = models.DateField(_('validity date'))
@@ -35,7 +35,7 @@ class Certificate(models.Model):
 
 
 class KartHoshmand(models.Model):
-    user = models.OneToOneField(DriverMore, on_delete=models.CASCADE)
+    user = models.OneToOneField(DriverMore, on_delete=models.CASCADE, related_name='karthoshmand')
     id = models.CharField(_('id'), max_length=20, primary_key=True)
     validity_date = models.DateField(_('validity date'))
     create_time = models.DateField(_('create time'))
@@ -56,9 +56,9 @@ class Truck(models.Model):
         HEAVY = 'HEAVY', 'Heavy'
 
     def upload_to(self, file_name):
-        return f'{self._meta}/{self.user}/{file_name}'
+        return f'{self._meta}/{self.user.user.username}/{file_name}'
 
-    user = models.OneToOneField(DriverMore, on_delete=models.CASCADE)
+    user = models.OneToOneField(DriverMore, on_delete=models.CASCADE, related_name='truck')
     type = models.CharField(_('type'), max_length=15, choices=Types.choices)
     registration_plate = models.CharField(_('registration plate'), max_length=8)
     id_insurance = models.IntegerField(_('id insurance'))

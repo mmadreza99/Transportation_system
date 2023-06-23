@@ -40,8 +40,8 @@ def create_waybill(request, sender, pk):
     form = CreateWaybill()
     if request.method == 'POST':
         form = CreateWaybill(request.POST)
-        form.instance.driver = request.user
-        form.instance.sender = customer
+        form.instance.driver = request.user.more
+        form.instance.sender = customer.more
         form.instance.consignment = consignment
         if form.is_valid():
             waybill = form.save()

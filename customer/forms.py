@@ -56,10 +56,20 @@ class LoginUserCustomer(forms.ModelForm):
 
 
 class CreateConsignmentForm(forms.ModelForm):
+
+    def __init__(self, user, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.user = user
     class Meta:
         model = Consignment
         field = '__all__'
         exclude = ('sender',)
+
+    def clean(self):
+        cleaned_data = super().clean()
+        if self.user.type == "DRIVER":
+            raise forms.ValidationError(f"this user can not create consignment")
+        return cleaned_data
 
 
 class CreateCustomMoreForm(forms.ModelForm):

@@ -1,16 +1,16 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from account.models import DriverUser
-from customer.models import CustomerUser, Consignment
+from drivers.models import DriverMore
+from customer.models import CustomerUser, Consignment, CustomerMore
 
 import random
 import string
 
 
 class Waybill(models.Model):
-    driver = models.ForeignKey(DriverUser, on_delete=models.SET_NULL, related_name='waybill_driver', null=True)
-    sender = models.ForeignKey(CustomerUser, on_delete=models.SET_NULL, related_name='waybill_sender', null=True)
+    driver = models.ForeignKey(DriverMore, on_delete=models.SET_NULL, related_name='waybill_driver', null=True)
+    sender = models.ForeignKey(CustomerMore, on_delete=models.SET_NULL, related_name='waybill_sender', null=True)
     consignment = models.ForeignKey(
         Consignment, on_delete=models.SET_NULL, related_name='waybill_consignment', null=True
     )

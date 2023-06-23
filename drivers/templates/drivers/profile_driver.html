@@ -20,5 +20,14 @@
     <p><a href="{% url 'driver_register_truck' %}">Create Truck </a><p>
     <p><a href="{% url 'driver_register_kart' %}">Create KartHoshmand </a><p>
 
+    <hr>
+    {% if waybills %}
+    <p>list of all waybill: </p>
+    <ul>
+        {% for waybill in waybills %}
+            <li>{{ waybill }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
 </body>
 </html>

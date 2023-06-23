@@ -4,6 +4,7 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, FormView, UpdateView
 
+from waybill.models import Waybill
 from .models import DriverMore, Certificate, Truck, KartHoshmand
 from account.models import DriverUser
 
@@ -189,6 +190,7 @@ class ProfileView(UpdateView):
             context['truck'] = Truck.objects.filter(user=driver_user).first()
             context['certificate'] = Certificate.objects.filter(user=driver_user).first()
             context['kart'] = KartHoshmand.objects.filter(user=driver_user).first()
+            context['waybills'] = driver_user.waybill_driver.all().order_by('-created_on')
         return context
 
     def form_valid(self, form):

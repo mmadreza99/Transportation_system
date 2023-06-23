@@ -117,6 +117,11 @@ class CreateConsignmentView(FormView):
     template_name = 'customer/create_consignment.html'
     success_url = '/customer/consignment/'
 
+    def get_form_kwargs(self):
+        kwargs = super(CreateConsignmentView, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
     def form_valid(self, form):
         form.instance.sender = self.request.user
         messages.info(self.request, f"create Consignment {form.cleaned_data['name']}")

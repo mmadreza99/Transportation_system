@@ -18,18 +18,19 @@
 {% endif %}
 
 {% if user.is_authenticated %}
-    <a href="{% url 'driver_Logout' %}">logout</a>
-{% endif %}
 
-{% if not user.is_authenticated %}
+    <a href="{% url 'driver_Logout' %}">logout</a>
+    <hr>
+    {% if user.more %}
+        <p><a href="{% url 'driver_profile' %}" > Profile </a><p>
+    {% else %}
+        <p><a href="{% url 'driver_register_more' %}" > Create more detail </a><p>
+    {% endif %}
+{% else %}
     <a href="{% url 'driver_login_or_register' %}">login</a>
 {% endif %}
 
-{% if user.more %}
-    <p><a href="{% url 'driver_profile' %}" > Profile </a><p>
-{% else %}
-    <p><a href="{% url 'driver_register_more' %}" > Create more detail </a><p>
-{% endif %}
+
 
 
 <p>list of consignment : <a href="{% url 'customer_consignment' %}" >here</a></p>
